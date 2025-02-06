@@ -17,24 +17,20 @@ namespace MeuApp
             do
             {
                 Console.WriteLine("Digite seu sexo (M) para masculino e (F) para feminino");
-                sexo = Console.ReadLine();
                 sexo.ToUpper();
+                sexo = Console.ReadLine();
+
+
+
                 if (sexo == "M")
                 {
+                    Console.WriteLine("sexo masculino escolhido");
                     Console.WriteLine("Digite seu peso:");
                     peso = double.Parse(Console.ReadLine());
-                    if (peso < 0)
-                    {
-                        Console.WriteLine("Peso inválido");
-                        return;
-                    }
+
                     Console.WriteLine("Digite sua altura:");
                     altura = double.Parse(Console.ReadLine()) / 100;
-                    if (altura < 0 || altura > 2.51)
-                    {
-                        Console.WriteLine("Altura inválida");
-                        return;
-                    }
+
                     imc = peso / (altura * altura);
                     Console.WriteLine($"Seu imc é: {imc.ToString("F2")}");
                     if (imc <= 19)
@@ -62,10 +58,11 @@ namespace MeuApp
                         Console.WriteLine("Obesidade Mórbida.");
 
                     }
-                }
-                else
-                {
 
+                }
+                else if (sexo == "F")
+                {
+                    Console.WriteLine("sexo feminino escolhido");
                     Console.WriteLine("Digite seu peso:");
                     peso = double.Parse(Console.ReadLine());
                     Console.WriteLine("Digite sua altura:");
@@ -75,8 +72,7 @@ namespace MeuApp
                     if (imc <= 18)
                     {
                         Console.WriteLine("Abaixo do peso ideal.");
-                        Console.WriteLine("Deseja repetir a operação ?");
-                        respostaFinal = Console.ReadLine();
+
                     }
                     else if (imc >= 20 && imc <= 23.9)
                     {
@@ -93,17 +89,28 @@ namespace MeuApp
                         Console.WriteLine("Obesidade moderada.");
 
                     }
-                    else
+                    else if (imc >= 39)
                     {
                         Console.WriteLine("Obesidade Mórbida.");
 
                     }
+                    else
+                    {
+                        Console.WriteLine("Inválido");
+                        return;
+                    }
 
-                    Console.WriteLine("Deseja repetir a operação ? (sim/nao)");
-                    resposta = Console.ReadLine();
+                }
+                else
+                {
+                    Console.WriteLine("Inválido");
+
                 }
 
-            } while (respostaFinal == "sim");
+                Console.WriteLine("Deseja repetir a operação ? (sim/nao)");
+                respostaFinal = Console.ReadLine();
+
+            } while (respostaFinal == "sim" || respostaFinal == "s");
         }
 
     }
